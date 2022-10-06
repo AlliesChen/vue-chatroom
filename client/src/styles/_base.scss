@@ -18,6 +18,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    * {
+      box-sizing: border-box;
+    }
   }
 
   a {
@@ -66,7 +69,16 @@
   }
 
   ul {
+    padding: 0;
     list-style-type: none;
+    > li {
+      text-align: left;
+    }
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
   }
 
   #app {
@@ -106,6 +118,10 @@
     width: 100%;
   }
 
+  .w-half {
+    width: 50%;
+  }
+
   .rounded {
     border-radius: 1 * library.$base-rate + rem;
   }
@@ -121,18 +137,22 @@
   }
 
   .text-white {
-    color: map.get(library.$app-colors, "white")
+    color: map.get(library.$app-colors, "white");
   }
 
   .text-bold {
     font-weight: 700;
   }
 
-  .text-semi-bold {
+  .text-semibold {
     font-weight: 600;
   }
 
   .text-2xl {
     font-size: xx-large;
+  }
+
+  .text-sm {
+    font-size: small;
   }
 }

@@ -31,6 +31,22 @@
   justify-content: center;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
+.items-start {
+  align-items: start;
+}
+
+.items-end {
+  align-items: end;
+}
+
 .grow {
   flex-grow: 1;
+}
+
+.self-start {
+  align-self: start;
 }
