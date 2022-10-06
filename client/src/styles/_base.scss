@@ -1,0 +1,138 @@
+@use "sass:map";
+@use "./library";
+@use "./utilities";
+
+@layer base {
+  :root {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+  }
+  a:hover {
+    color: #535bf2;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center, start;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
+
+  button {
+    border: 1px solid transparent;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto black;
+  }
+
+  input {
+    border: none;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  button,
+  input {
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.25s;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a:hover {
+      color: #747bff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+}
+
+@layer utils {
+  @include utilities.set-model-size(0, 1, 2, 3, 4, 8);
+  @include utilities.set-color-usage("green", "blue", "slate");
+
+  .h-half {
+    height: 50%;
+  }
+
+  .h-full {
+    height: 100%;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+
+  .rounded {
+    border-radius: 1 * library.$base-rate + rem;
+  }
+
+  .rounded-t {
+    border-top-left-radius: 1 * library.$base-rate + rem;
+    border-top-right-radius: 1 * library.$base-rate + rem;
+  }
+
+  .border {
+    border-style: solid;
+    border-width: 2px;
+  }
+
+  .text-white {
+    color: map.get(library.$app-colors, "white")
+  }
+
+  .text-bold {
+    font-weight: 700;
+  }
+
+  .text-semi-bold {
+    font-weight: 600;
+  }
+
+  .text-2xl {
+    font-size: xx-large;
+  }
+}

@@ -1,0 +1,62 @@
+@use "sass:map";
+@use "./library";
+
+@mixin set-model-size($size...) {
+  @for $i from 1 through length($size) {
+    .p-#{nth($size, $i)} {
+      padding: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .px-#{nth($size, $i)} {
+      padding-inline: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .py-#{nth($size, $i)} {
+      padding-block: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .m-#{nth($size, $i)} {
+      margin: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .mx-#{nth($size, $i)} {
+      margin-inline: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .my-#{nth($size, $i)} {
+      margin-block: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+
+    .h-#{nth($size, $i)} {
+      height: calc(#{nth($size, $i) * library.$base-rate + rem});
+    }
+  }
+}
+
+@mixin set-color-usage($color...) {
+  @for $i from 1 through length($color) {
+    .bg-#{nth($color, $i)} {
+      background-color: map.get(
+        library.$app-colors,
+        "#{nth($color, $i)}-neutral"
+      );
+    }
+
+    .bg-#{nth($color, $i)}:hover {
+      background-color: map.get(library.$app-colors, "#{nth($color, $i)}-dark");
+      color: map.get(library.$app-colors, "#{nth($color, $i)}-pale");
+    }
+
+    .bg-#{nth($color, $i)}-pale:hover {
+      background-color: map.get(library.$app-colors, "#{nth($color, $i)}-pale");
+    }
+
+    .border-#{nth($color, $i)} {
+      border-color: map.get(library.$app-colors, "#{nth($color, $i)}-neutral");
+    }
+
+    .border-#{nth($color, $i)}:hover {
+      border-color: map.get(library.$app-colors, "#{nth($color, $i)}-dark");
+    }
+  }
+}
