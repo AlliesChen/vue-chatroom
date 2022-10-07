@@ -11,12 +11,18 @@ interface UserSentMessage {
 }
 
 const app = express();
+const port = process.env.PORT || 3001;
+
 app.use(cors());
+app.use(express.static("client/dist"));
+app.get("*", (req, res) => {
+  res.sendFile("./client/dist/index.html");
+});
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://vue-chatroom.fly.dev",
     methods: ["GET", "POST"],
   },
 });
@@ -36,6 +42,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING");
+server.listen(port, () => {
+  console.log(`SERVER RUNNING ON PORT ${port}`);
 });
