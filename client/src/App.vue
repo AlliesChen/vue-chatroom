@@ -3,8 +3,7 @@ import { ref } from "@vue/reactivity";
 import { io } from "socket.io-client";
 import ChatRoom from "./components/ChatRoom.vue";
 
-// TODO: Change back to https://vue-chatroom.fly.dev
-const socket = io("http://localhost:3001");
+const socket = io("https://vue-chatroom.fly.dev");
 
 const username = ref("");
 const room = ref("");
