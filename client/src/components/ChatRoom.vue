@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Socket } from "socket.io-client";
-import { computed, onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 
 interface MessageData {
   room: string;
@@ -11,8 +11,25 @@ interface MessageData {
 
 const props = defineProps<{ socket: Socket; username: string; room: string }>();
 
+// User input
 const currentMessage = ref("");
+// Messages from websocket
 const messageList = ref<MessageData[]>([]);
+// List Elements' Reference
+const messageElRefs = ref([]);
+
+// scroll down to the latest message
+watch(
+  messageList,
+  (list) => {
+    nextTick(() =>
+      (messageElRefs.value[list.length - 1] as HTMLLIElement).scrollIntoView(
+        false
+      )
+    );
+  },
+  { deep: true }
+);
 
 function getTimeString() {
   const timestamp = new Date(Date.now());
@@ -56,9 +73,10 @@ onMounted(() => {
       <ul v-if="messageList.length !== 0" class="px-3 flex-col gap-4">
         <li
           v-for="(msg, index) in messageList"
+          ref="messageElRefs"
           class="message-container flex-col"
           :class="msg.author === username ? 'my-message' : 'others-message'"
-          :key="index"
+          :key="msg.room + msg.author + msg.time + index"
         >
           <p class="self-start py-1 px-3 w-full rounded">
             {{ msg.message }}

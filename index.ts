@@ -22,7 +22,8 @@ app.get("*", (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://vue-chatroom.fly.dev",
+    // TODO: Change back to https://vue-chatroom.fly.dev
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
